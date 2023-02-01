@@ -84,6 +84,7 @@ class TypeService(models.Model):
 
 
 class HostingPackage(models.Model):
+    """Hosting servers characters."""
     name = models.CharField(max_length=500)
     RAM = models.CharField(max_length=500)
     memory = models.CharField(max_length=500)
