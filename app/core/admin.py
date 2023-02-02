@@ -46,5 +46,9 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Category)
-# admin.site.register(models.Tag)
-# admin.site.register(models.Ingredient)
+admin.site.register(models.Banner)
+admin.site.register(models.About)
+admin.site.register(models.Services)
+admin.site.register(models.ItemsDomain)
+admin.site.register(models.Domain)
+admin.site.register(models.OrderDomain)
