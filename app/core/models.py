@@ -123,8 +123,8 @@ class Services(models.Model):
     extra_storage = models.CharField(max_length=255)
     backup = models.BooleanField()
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=2, max_length=3)
-    price_year = models.DecimalField(max_digits=2, max_length=3, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price_year = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
 
     def __str__(self) -> str:
