@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
+    
+    # third-party apps
+    'corsheaders',
+
     'rest_framework',
     'rest_framework.authtoken',
     'drf_spectacular',
@@ -55,7 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,26 +67,7 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://139.144.21.168:8000",
-    "http://localhost:8000",
-    "http://127.0.0.1:3000",
-]
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://139.144.21.168:8000",
-    "http://localhost:8000",
-    "http://127.0.0.1:3000",
-]
-
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
 
 ROOT_URLCONF = 'app.urls'
 
@@ -105,6 +89,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication"
+    ],
+    # 'DEFAULT_PERMISSION_CLASSES':
+    #     ('rest_framework.permissions.AllowAny',),
+    # "EXCEPTION_HANDLER": "apps.core.exception.exception_handler.status_code_handler"
+}
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -118,7 +114,11 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
-
+from django.utils import timezone
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timezone.timedelta(days=30),
+    "REFRESH_TOKEN_LIFETIME": timezone.timedelta(days=35),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -176,3 +176,17 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
+
+CORS_ORIGIN_ALLOW_ALL = True  # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
+]
+
+INVOICE_EXPIRE_DAY = 10
+PX_ROBOT_PHONE = "+000000000000"
