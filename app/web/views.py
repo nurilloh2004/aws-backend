@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
 from core.models import *
 from .serializers import *
@@ -14,7 +14,7 @@ class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
 
 
 class BannerList(generics.ListAPIView):
-    queryset = Banner.objects.all()
+    queryset = Banner.objects.get_object_or_404()
     serializer_class = BannerSerializer
 
 
