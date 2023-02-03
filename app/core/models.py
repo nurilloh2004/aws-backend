@@ -200,44 +200,38 @@ class OrderService(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 
-# class AllDomains(models.Model):
-#     exist_DNS_name = models.CharField(max_length=255)
-#     exist_DNS_site_name = models.CharField(max_length=255)
-#     price_DNS = models.DecimalField(max_digits=10, decimal_places=2)
-#     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-#     end_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-#     id_client_license = models.CharField(max_length=200)
-#     PM = models.ForeignKey(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.CASCADE,
-#     )
-#     client = models.ForeignKey(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.CASCADE,
-#     )
+class AllDomains(models.Model):
+    exist_DNS_name = models.CharField(max_length=255)
+    exist_DNS_site_name = models.CharField(max_length=255)
+    price_DNS = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    end_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    id_client_license = models.CharField(max_length=200)
+    PM = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pm_all_domains')
+    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_all_domains')
 
 
-# class Exist_servers_character(models.Model):
-#     server = models.ForeignKey(Services, on_delete=models.CASCADE, blank=True, null=True)
-#     name = models.CharField(max_length=255)
-#     RAM = models.CharField(max_length=255)
-#     SSD = models.CharField(max_length=255)
-#     CPU = models.CharField(max_length=255)
-#     extra_storage = models.CharField(max_length=255)
-#     backup = models.BooleanField()
-#     description = models.TextField(blank=True, null=True)
-#     price = models.DecimalField(max_digits=10, decimal_places=2)
-#     price_year = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-#     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-#     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+class Exist_servers_character(models.Model):
+    server = models.ForeignKey(Services, on_delete=models.CASCADE, blank=True, null=True)
+    name = models.CharField(max_length=255)
+    RAM = models.CharField(max_length=255)
+    SSD = models.CharField(max_length=255)
+    CPU = models.CharField(max_length=255)
+    extra_storage = models.CharField(max_length=255)
+    backup = models.BooleanField()
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price_year = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 
-# class AllService(models.Model):
-#     exist_server_name = models.CharField(max_length=255)
-#     is_ours = models.BooleanField(default=True)
-#     service_character = models.ForeignKey(Exist_servers_character, on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-#     end_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+class AllService(models.Model):
+    exist_server_name = models.CharField(max_length=255)
+    is_ours = models.BooleanField(default=True)
+    service_character = models.ForeignKey(Exist_servers_character, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    end_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
 
 
