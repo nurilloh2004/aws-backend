@@ -26,6 +26,11 @@ class AboutList(generics.ListAPIView):
     serializer_class = AboutSerializer
 
 
+class SubAboutList(generics.ListAPIView):
+    queryset = SubAbout.objects.all()
+    serializer_class = SubAboutSerializer
+
+
 class ServicesList(generics.ListCreateAPIView):
     queryset = Services.objects.all()
     serializer_class = ServicesSerializer

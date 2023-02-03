@@ -19,6 +19,12 @@ class AboutSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class SubAboutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubAbout
+        fields = '__all__'
+
+
 class ServicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Services

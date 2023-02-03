@@ -108,7 +108,21 @@ class About(models.Model):
     class Meta:
         verbose_name = _("Info")
         verbose_name_plural = _("Info")
-    
+
+
+class SubAbout(models.Model):
+    """For about page info."""
+    name = models.CharField(max_length=255)
+    title = models.TextField(blank=True, null=True)
+    image = models.ImageField(null=True, upload_to=recipe_image_file_path)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = _("SubAbout")
+        verbose_name_plural = _("SubAbout")
+
 
 class Services(models.Model):
     """Hosting services model."""
