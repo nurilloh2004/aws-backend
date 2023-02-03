@@ -114,8 +114,6 @@ class SubAbout(models.Model):
     """For about page info."""
     name = models.CharField(max_length=255)
     title = models.TextField(blank=True, null=True)
-    image = models.ImageField(null=True, upload_to=recipe_image_file_path)
-
     def __str__(self) -> str:
         return self.name
 
