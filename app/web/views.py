@@ -14,7 +14,7 @@ class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
 
 
 class BannerList(generics.ListAPIView):
-    queryset = Banner.objects.get_object_or_404()
+    queryset = get_object_or_404(Banner)
     serializer_class = BannerSerializer
 
 
