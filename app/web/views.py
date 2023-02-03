@@ -13,10 +13,13 @@ class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
     serializer_class = CategorySerializer
 
 
-class BannerList(generics.ListAPIView):
-    queryset = get_object_or_404(Banner)
+class BannerDetail(generics.RetrieveAPIView):
+    queryset = Banner.objects.all()
     serializer_class = BannerSerializer
 
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Banner, pk=pk)
 
 class AboutList(generics.ListAPIView):
     queryset = About.objects.all()
